@@ -24,7 +24,7 @@ Write-Host "Opening YouTube video in Edge..."
 Start-Process "msedge.exe" "https://www.youtube.com/watch?v=bEvp5bBVZ8Y"
 
 ## Wait for 10 seconds (adjust as needed) ##
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds 20
 
 ## Shutdown the computer ##
 Write-Host "Preparing to shutdown the computer..."
